@@ -15,9 +15,9 @@
  */
 open class Store<State: StateType>: StoreType {
 
-    typealias SubscriptionType = SubscriptionBox<State>
+    public typealias SubscriptionType = SubscriptionBox<State>
 
-    internal(set) open var state: State! {
+    open var state: State! {
         didSet {
             subscriptions.forEach {
                 if $0.subscriber == nil {
@@ -33,7 +33,7 @@ open class Store<State: StateType>: StoreType {
 
     private var reducer: Reducer<State>
 
-    internal var subscriptions: Set<SubscriptionType> = []
+    public var subscriptions: Set<SubscriptionType> = []
 
     private var isDispatching = false
 
